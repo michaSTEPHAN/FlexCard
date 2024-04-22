@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* 
+display: flex               => Afficher les cards côte à côte
+flex-wrap: wrap             => si on a plus de place en largeur les elements se mettent en-dessous les uns des autres
+justify-content: center     => Centrer en largeur
+align-items: center         => Centrer en hauteur
+gap: 20px                   => Espacer les cards de 20px 
+*/
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    background: rgba(68, 117, 136, 0.548);
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+/*
+border-radius: 10px     => Bords arrondis de 10px
+box-shadow:             => permet de rajouter une ombre à partir d'exemple du site :
+                           https://getcssscan.com/css-box-shadow-examples
+overflow: hidden        => tout ce qui est en dehors de "card" est invisible
+*/
+.card {
+    background: white;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid red;
+    overflow: hidden;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    transition: 1s;
+}
+
+.card-header {
+    position: relative;  
+    height: 200px;
+}
+
+/*
+object-fit: cover       => image couvre l'ensemble de la hauteur/largeur défini
+filter:grayscale(1)     => affiche l'image en noir et blanc
+transition: 1s          => Le changement d'état de l'image se fait en 1s       
+*/   
+.card-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    filter:grayscale(1);        
+    transition: 1s;  
+    /* border-radius: 10px 10px 0px 0px;*/
+}
+
+/* On remet l'image en couleur sur survol */
+.card-header img:hover {
+    filter:grayscale(0);
+}
+
+/* 
+transform: translateY(-10px)    => Permet de remonter 1 champ sur survol
+*/
+/* .card :hover {
+    transform: translateY(-10px)
+} */
+
+.card-text {
+    padding: 30px;
+}
+
+/*
+margin-bottom: 10px         => marge de 10px en-dessous de Article 1
+*/
+.card-text h1 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.card-text p {
+    font-size: 14px;
+    color: rgb(175, 169, 169);
+}
+
+/*
+left: -50px         => on met -50px pour mettre le carré coeur à gauche et comme on a un overflow: hidden au départ il sera invisible
+position: absolute  => on met absolute car on a mis son parent (card-header) en relative et comme ça on pourra ajuster la position de coeur vs card-header
+*/
+.coeur {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background: rgb(237, 53, 96);
+    color: white;
+    font-size: 25px;
+    position: absolute;
+    top: 0px;
+    left: -50px;
+}
+
+/* 
+.card:hover .coeur      => on utilise cette syntaxe pour dire que l'on veut faire une action
+                           sur le survol de l'element coeur qui fait partie de card 
+left: 0px               => on remet left à zéro afin d'afficher le carré coeur sur le survol de l'image
+*/
+.card:hover .coeur {
+    left: 0px;
+    transition: 1s; 
+}
